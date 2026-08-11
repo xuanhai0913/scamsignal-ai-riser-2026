@@ -1,0 +1,22 @@
+{
+  "name": "@scamsignal/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./analysis-contract": "./src/analysis-contract.ts",
+    "./api-contract": "./src/api-contract.ts",
+    "./capabilities": "./src/capabilities.ts",
+    "./deterministic-analysis": "./src/deterministic-analysis.ts",
+    "./gemini-analysis": "./src/gemini-analysis.ts",
+    "./privacy": "./src/privacy.ts",
+    "./rescue-case": "./src/rescue-case.ts",
+    "./types": "./src/types.ts",
+    "./url-analysis": "./src/url-analysis.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "tldts": "^7.0.12"
+  }
+}

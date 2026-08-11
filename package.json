@@ -1,0 +1,56 @@
+{
+  "name": "scamsignal-ai",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "tsx watch server/index.ts",
+    "dev:client": "vite --port=3000 --host=0.0.0.0",
+    "dev:server": "tsx watch server/index.ts",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "start": "node server-dist/server/index.js",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server-dist",
+    "lint": "npm run lint:web && npm run lint:server && npm run lint:mobile",
+    "lint:web": "tsc --noEmit",
+    "lint:server": "tsc -p tsconfig.server.json --noEmit",
+    "lint:mobile": "npm exec --workspace @scamsignal/mobile -- tsc --noEmit",
+    "typecheck": "npm run lint",
+    "test": "vitest run",
+    "test:contract": "vitest run packages/core/src/api-contract.test.ts packages/api-client/src/index.test.ts",
+    "test:mobile": "vitest run apps/mobile/src/features",
+    "build:mobile": "npm run build:android-bundle --workspace @scamsignal/mobile"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@scamsignal/api-client": "0.1.0",
+    "@scamsignal/core": "0.1.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "lucide-react": "^0.546.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tldts": "^7.0.12"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "concurrently": "^9.2.0",
+    "tsx": "^4.20.3",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3",
+    "vitest": "^3.2.4"
+  }
+}

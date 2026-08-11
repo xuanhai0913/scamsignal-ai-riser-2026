@@ -1,0 +1,19 @@
+node_modules/
+build/
+dist/
+server-dist/
+coverage/
+output/
+.DS_Store
+*.log
+*.zip
+.playwright-cli/
+.env*
+!.env.example
+
+# Submission repository exclusions. These remain local design/history artifacts
+# and must not be imported into the replacement AI Studio project.
+ai-studio/
+design/
+src/index 2.css
+apps/mobile/.vscode/

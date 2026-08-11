@@ -1,0 +1,6 @@
+{
+  "name": "ScamSignal AI",
+  "description": "An explainable, Vietnamese-first digital safety assistant that analyzes suspicious messages and screenshots before users send money.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

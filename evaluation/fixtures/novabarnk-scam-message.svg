@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#eef2f5"/>
+  <rect x="150" y="55" width="900" height="690" rx="34" fill="#ffffff"/>
+  <rect x="150" y="55" width="900" height="104" rx="34" fill="#0b6b63"/>
+  <rect x="150" y="125" width="900" height="34" fill="#0b6b63"/>
+  <circle cx="218" cy="107" r="28" fill="#d9f3ee"/>
+  <text x="218" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#0b6b63">N</text>
+  <text x="264" y="99" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#ffffff">NovaBank Support</text>
+  <text x="264" y="130" font-family="Arial, sans-serif" font-size="17" fill="#ccebe6">Tài khoản doanh nghiệp</text>
+
+  <text x="190" y="205" font-family="Arial, sans-serif" font-size="17" fill="#60717a">Hôm nay, 14:32</text>
+  <rect x="190" y="230" width="730" height="320" rx="24" fill="#f4f6f7"/>
+  <text x="228" y="282" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#16252d">CẢNH BÁO GIAO DỊCH</text>
+  <text x="228" y="330" font-family="Arial, sans-serif" font-size="23" fill="#263941">Giao dịch chuyển khoản 18.500.000đ đang bị tạm giữ.</text>
+  <text x="228" y="374" font-family="Arial, sans-serif" font-size="23" fill="#263941">Tài khoản sẽ bị khóa sau 10 phút nếu chưa xác minh.</text>
+  <text x="228" y="430" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#b3312b">Nhập mã OTP để hoàn tất xác minh tại:</text>
+  <text x="228" y="476" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#0866c6">https://novabarnk.vn/secure</text>
+  <text x="228" y="522" font-family="Arial, sans-serif" font-size="18" fill="#697982">Nếu quá hạn, ngân hàng không chịu trách nhiệm.</text>
+
+  <rect x="190" y="585" width="820" height="90" rx="18" fill="#fff4db" stroke="#e3b44d" stroke-width="2"/>
+  <text x="220" y="622" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#765516">DỮ LIỆU HƯ CẤU CHO KIỂM THỬ</text>
+  <text x="220" y="653" font-family="Arial, sans-serif" font-size="17" fill="#765516">NovaBank và novabarnk.vn không đại diện cho tổ chức hoặc website có thật.</text>
+</svg>
