@@ -24,7 +24,7 @@ export async function analyzeRequest(input: unknown): Promise<Analysis> {
     message: messageRedaction.value,
     extraInfo: extraRedaction.value,
   };
-  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+  const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
   const extraction = request.imageDataUrl
     ? await extractImageSignals({apiKey, model, imageDataUrl: request.imageDataUrl})
     : {visibleText: '', urls: [], referenceDomains: []};

@@ -13,11 +13,6 @@ type ImageExtraction = {
   referenceDomains: string[];
 };
 
-const GEMINI_HTTP_OPTIONS = {
-  timeout: 25_000,
-  retryOptions: {attempts: 1},
-} as const;
-
 function parseImageDataUrl(imageDataUrl: string) {
   const [metadata, data] = imageDataUrl.split(',', 2);
   if (!data) throw new Error('Ảnh tải lên không hợp lệ.');
@@ -35,24 +30,24 @@ export async function extractImageSignals(options: {
   const {GoogleGenAI} = await import('@google/genai');
   const client = new GoogleGenAI({apiKey: options.apiKey});
   const image = parseImageDataUrl(options.imageDataUrl);
-  const response = await client.models.generateContent({
+  const response = await client.interactions.create({
+    api_version: 'v1beta',
     model: options.model,
-    contents: [{
-      role: 'user',
-      parts: [
-        {text: 'Trích xuất nguyên văn phần chữ nhìn thấy, tất cả URL/domain và tên miền chính thức được nêu rõ trong ảnh. Không mở hoặc truy cập URL. Chỉ trả về JSON thuần đúng dạng {"visibleText":"...","urls":["..."],"referenceDomains":["..."]}.'},
-        {inlineData: image},
-      ],
-    }] as never,
-    config: {
-      abortSignal: AbortSignal.timeout(25_000),
-      httpOptions: GEMINI_HTTP_OPTIONS,
-      responseMimeType: 'application/json',
-      responseJsonSchema: IMAGE_EXTRACTION_SCHEMA,
-      temperature: 0,
+    store: false,
+    input: [
+      {
+        type: 'text',
+        text: 'Trích xuất nguyên văn phần chữ nhìn thấy, tất cả URL/domain và tên miền chính thức được nêu rõ trong ảnh. Không mở hoặc truy cập URL. Chỉ trả về JSON thuần đúng dạng {"visibleText":"...","urls":["..."],"referenceDomains":["..."]}.',
+      },
+      {type: 'image', data: image.data, mime_type: image.mimeType},
+    ],
+    response_format: {
+      type: 'text',
+      mime_type: 'application/json',
+      schema: IMAGE_EXTRACTION_SCHEMA,
     },
   });
-  const text = String(response.text || '').trim();
+  const text = String(response.output_text || '').trim();
   if (!text) return {visibleText: '', urls: [], referenceDomains: []};
   const payload = JSON.parse(text) as Partial<ImageExtraction>;
   return {
@@ -75,27 +70,24 @@ export async function generateGeminiAnalysis(options: {
 }) {
   const {GoogleGenAI} = await import('@google/genai');
   const client = new GoogleGenAI({apiKey: options.apiKey});
-  const parts: Array<Record<string, unknown>> = [{
-    text: buildAnalysisPrompt({
+  const response = await client.interactions.create({
+    api_version: 'v1beta',
+    model: options.model,
+    store: false,
+    system_instruction: SYSTEM_INSTRUCTION,
+    input: buildAnalysisPrompt({
       message: options.request.message,
       extraInfo: options.request.extraInfo,
       extractedImageText: options.extractedImageText,
       urlInspections: options.urlInspections,
     }),
-  }];
-  const response = await client.models.generateContent({
-    model: options.model,
-    contents: [{role: 'user', parts}] as never,
-    config: {
-      abortSignal: AbortSignal.timeout(25_000),
-      httpOptions: GEMINI_HTTP_OPTIONS,
-      systemInstruction: SYSTEM_INSTRUCTION,
-      responseMimeType: 'application/json',
-      responseJsonSchema: ANALYSIS_RESPONSE_SCHEMA,
-      temperature: 0.15,
+    response_format: {
+      type: 'text',
+      mime_type: 'application/json',
+      schema: ANALYSIS_RESPONSE_SCHEMA,
     },
   });
-  const text = String(response.text || '').trim();
+  const text = String(response.output_text || '').trim();
   if (!text) throw new Error('Gemini chưa trả về kết quả.');
 
   try {

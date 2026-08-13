@@ -98,7 +98,7 @@ export function createCapabilitiesResponseV1(environment: Record<string, string 
     checkedAt: new Date().toISOString(),
     analysis: {
       state: analysisAvailable ? 'configured' : 'not_configured',
-      ...(analysisAvailable ? {model: environment.GEMINI_MODEL || 'gemini-2.5-flash'} : {}),
+      ...(analysisAvailable ? {model: environment.GEMINI_MODEL || 'gemini-3.5-flash-lite'} : {}),
     },
     webRisk: {state: environment.WEB_RISK_API_KEY ? 'configured' : 'not_configured'},
     contactResolver: {state: 'planned'},

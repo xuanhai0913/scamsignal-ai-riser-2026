@@ -37,7 +37,7 @@ gcloud run deploy scamsignal-ai \
   --source . \
   --region asia-southeast1 \
   --allow-unauthenticated \
-  --set-env-vars GEMINI_MODEL=gemini-2.5-flash \
+  --set-env-vars GEMINI_MODEL=gemini-3.5-flash-lite \
   --set-secrets GEMINI_API_KEY=scamsignal-gemini-api-key:latest,WEB_RISK_API_KEY=scamsignal-web-risk-api-key:latest \
   --memory 512Mi \
   --cpu 1 \

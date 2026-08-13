@@ -29,7 +29,7 @@
     "build:mobile": "npm run build:android-bundle --workspace @scamsignal/mobile"
   },
   "dependencies": {
-    "@google/genai": "^2.4.0",
+    "@google/genai": "^2.17.0",
     "@scamsignal/api-client": "0.1.0",
     "@scamsignal/core": "0.1.0",
     "dotenv": "^17.2.1",
